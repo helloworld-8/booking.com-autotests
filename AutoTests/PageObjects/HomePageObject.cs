@@ -68,6 +68,14 @@ namespace AutoTests.PageObjects
         {
             doorsWidth.Clear();
             doorsHeight.Clear();
+            if (gateAutomation.Selected)
+            {
+                gateAutomation.Click();
+            }
+            if (gateInstallationWork.Selected)
+            {
+                gateInstallationWork.Click();
+            }
         }
 
     }

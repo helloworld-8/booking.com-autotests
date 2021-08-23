@@ -11,18 +11,30 @@ namespace AutoTests.TestScripts
 
     public class GarageDoorPriceCalculation : TestBase
     {
+
+        HomePageObject home;
+
         [Test]
         public void Should_Calculate_Garage_Door_Price()
         {
-            HomePageObject home = new HomePageObject();
+            this.home = new HomePageObject();
 
-            string calculationResultMessageRegex = @"Vartų kaina dabar - TIK ((\d+\.?\d*)|(\.\d+))€! Tai yra preliminari kaina Jūsų vartų pagal pateiktus išmatavimus\. Dėl tikslios kainos prašome susisiekti telefonu\.";
-            home.CalculateGarageDoorPrice("2000", "2000", true, false, calculationResultMessageRegex, "665.98");
+            string calculationSuccessMessageRegex = @"Vartų kaina dabar - TIK ((\d+\.?\d*)|(\.\d+))€! Tai yra preliminari kaina Jūsų vartų pagal pateiktus išmatavimus\. Dėl tikslios kainos prašome susisiekti telefonu\.";
+            
+            home.CalculateGarageDoorPrice("2000", "2000", true, false, calculationSuccessMessageRegex, "665.98");
+            home.ClearCalculatorForm();
 
-            //home.ClearCalculatorForm();
+            home.CalculateGarageDoorPrice("2000", "2500", true, false, calculationSuccessMessageRegex, "781.52");
+            home.ClearCalculatorForm();
+        }
 
-           // home.CalculateGarageDoorPrice("2500", "2500", true, true);
-           // home.ClearCalculatorForm();
+        [Test]
+        public void Should_Throw_An_Error()
+        {
+            string calculationSuccessMessageRegex = @"Vartų kaina dabar - TIK ((\d+\.?\d*)|(\.\d+))€! Tai yra preliminari kaina Jūsų vartų pagal pateiktus išmatavimus\. Dėl tikslios kainos prašome susisiekti telefonu\.";
+
+            home.CalculateGarageDoorPrice("20000", "2000", true, false, calculationSuccessMessageRegex, "665.98");
+            home.ClearCalculatorForm();
         }
 
     }
