@@ -7,9 +7,6 @@ namespace AutoTests.Helpers
 {
     public static class GenericHelper
     {
-
-
-
         /// <summary>
         /// An expectation for checking that an element is present on the DOM of a page
         /// and visible. Visibility means that the element is not only displayed but

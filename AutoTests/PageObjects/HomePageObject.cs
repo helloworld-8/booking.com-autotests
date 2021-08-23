@@ -37,7 +37,7 @@ namespace AutoTests.PageObjects
         /// <param name="clickOnGateAutomation">Select gate automation option?</param>
         /// <param name="clickOnGateInstallationWork">Select gate installation work option?</param>
         /// <param name="calculationResultMessageRegex">Enter the regular expression calculation result message to verify it</param>
-        /// <param name="calculatedPrice">Enter the properly calculated price to verify it</param>
+        /// <param name="calculatedPrice">Enter the properly calculated price to verify it. Leave empty string if no verifying is needed</param>
         /// 
         public void CalculateGarageDoorPrice(
             string doorsWidthValue,
@@ -61,7 +61,10 @@ namespace AutoTests.PageObjects
             calculationButton.Click();
             ObjectRepository.Driver.WaitUntilElementIsVisible(calculationResultMessage, 20);
             StringAssert.IsMatch(calculationResultMessageRegex,calculationResultMessage.Text.Trim());
-            StringAssert.Contains(calculatedPrice, calculationResultMessage.Text);
+            if(calculatedPrice.Length > 0)
+            {
+                StringAssert.Contains(calculatedPrice, calculationResultMessage.Text);
+            }
         }
 
         public void ClearCalculatorForm()
