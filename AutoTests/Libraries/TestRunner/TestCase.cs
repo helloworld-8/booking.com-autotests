@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AutoTests.TestRunner
+namespace AutoTests.Libraries.TestRunner
 {
     public class TestCase
     {

@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using AutoTests.Settings;
-using AutoTests.TestRunner;
 
 namespace AutoTests.BaseClasses
 {

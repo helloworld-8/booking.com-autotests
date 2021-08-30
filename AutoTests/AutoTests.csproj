@@ -35,6 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.DataSet.3.6.0\lib\net35\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.13.2.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.13.2\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -49,6 +55,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net" />
     <Reference Include="System.Security" />
     <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -84,18 +91,23 @@
     <Compile Include="Helpers\TextBoxHelper.cs" />
     <Compile Include="Config\AppConfigReader.cs" />
     <Compile Include="Config\BrowserType.cs" />
+    <Compile Include="Libraries\ExcelReader\ExcelReader.cs" />
     <Compile Include="PageObjects\HomePageObject.cs" />
     <Compile Include="Settings\ObjectRepository.cs" />
-    <Compile Include="TestRunner\CaseInfo.cs" />
+    <Compile Include="Libraries\TestRunner\CaseInfo.cs" />
     <Compile Include="Tests\GarageDoorPriceCalculation\GarageDoorPriceCalculation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestRunner\StepInfo.cs" />
-    <Compile Include="TestRunner\TestCase.cs" />
+    <Compile Include="Libraries\TestRunner\StepInfo.cs" />
+    <Compile Include="Libraries\TestRunner\TestCase.cs" />
+    <Compile Include="Tests\GarageDoorPriceCalculation\TestCases.cs" />
     <Compile Include="Tests\GarageDoorPriceCalculation\TestSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Tests\GarageDoorPriceCalculation\TestCaseData\Should_Calculate_Garage_Door_Price_Succesfully.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IConfig.cs" />

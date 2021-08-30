@@ -5,11 +5,19 @@ using AutoTests.PageObjects;
 using AutoTests.BaseClasses;
 using AutoTests.Config;
 using AutoTests.Settings;
-using AutoTests.TestRunner;
+using AutoTests.Libraries.TestRunner;
+using AutoTests.Libraries.ExcelReader;
+
+using ExcelDataReader;
+using System.IO;
+using System.Reflection;
+using System.Data;
+using System.Collections.Generic;
+using System;
+using System.Collections;
 
 namespace AutoTests.Tests.GarageDoorPriceCalculation
 {
-
     public class GarageDoorPriceCalculationTests : TestBase
     {
         /// <summary>
@@ -20,26 +28,29 @@ namespace AutoTests.Tests.GarageDoorPriceCalculation
         /// <summary>
         /// Valid test cases of garage door price calculation
         /// </summary>
-        [TestCase]
-        public void Should_Calculate_Garage_Door_Price_Sucesfully()
+        [TestCaseSource(typeof(Should_Calculate_Garage_Door_Price_Succesfully))]
+        public void Should_Calculate_Garage_Door_Price_Succesfully(
+            string doorsWidth,
+            string doorsHeight,
+            bool checkGateAutomation,
+            bool checkGateInstallationWork,
+            string calculationResultMessageRegex,
+            string calculatedPrice
+        )
         {
-            var calculationSuccessMessageRegex = @"Vartų kaina dabar - TIK ((\d+\.?\d*)|(\.\d+))€! Tai yra preliminari kaina Jūsų vartų pagal pateiktus išmatavimus\. Dėl tikslios kainos prašome susisiekti telefonu\.";
-
             TestCase testCase = new TestCase();
-            
-            testCase.RunTestSteps(TestSteps.EnterGarageDoorProperties, new GarageDoorProperties() {
-                DoorsWidth = "2000",
-                DoorsHeight = "2000",
-                GateAutomation = true,
-                GateInstallationWork = false
+            testCase.RunTestSteps(TestSteps.EnterGarageDoorProperties, new GarageDoorProperties()
+            {
+                DoorsWidth = doorsWidth,
+                DoorsHeight = doorsHeight,
+                GateAutomation = checkGateAutomation,
+                GateInstallationWork = checkGateInstallationWork
             });
-
             testCase.RunTestSteps(TestSteps.CalculateGarageDoorPrice, new GarageDoorPriceProperties()
             {
-                CalculationResultMessageRegex = calculationSuccessMessageRegex,
-                CalculatedPrice = "665.98"
+                CalculationResultMessageRegex = calculationResultMessageRegex,
+                CalculatedPrice = calculatedPrice
             });
-
             testCase.RunTestSteps(TestSteps.ClearCalculatorForm);
         }
 

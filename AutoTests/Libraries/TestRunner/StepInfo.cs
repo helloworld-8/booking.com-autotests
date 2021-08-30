@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AutoTests.TestRunner
+namespace AutoTests.Libraries.TestRunner
 {
     public enum Status
     {
