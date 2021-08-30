@@ -86,8 +86,12 @@
     <Compile Include="Config\BrowserType.cs" />
     <Compile Include="PageObjects\HomePageObject.cs" />
     <Compile Include="Settings\ObjectRepository.cs" />
-    <Compile Include="TestScripts\GarageDoorPriceCalculation.cs" />
+    <Compile Include="TestRunner\CaseInfo.cs" />
+    <Compile Include="Tests\GarageDoorPriceCalculation\GarageDoorPriceCalculation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestRunner\StepInfo.cs" />
+    <Compile Include="TestRunner\TestCase.cs" />
+    <Compile Include="Tests\GarageDoorPriceCalculation\TestSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -96,6 +100,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\IConfig.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

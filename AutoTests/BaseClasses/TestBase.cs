@@ -1,15 +1,16 @@
 ﻿using NUnit.Framework;
 using AutoTests.Settings;
+using AutoTests.TestRunner;
 
 namespace AutoTests.BaseClasses
 {
     [TestFixture]
-    public class TestBase : WebDriverBase
+    public abstract class TestBase : WebDriverBase
     {
-
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
+
             this.InitDriver();
             this.SetUrl(ObjectRepository.Config.GetWebsite());
         }

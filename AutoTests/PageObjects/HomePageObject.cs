@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using AutoTests.BaseClasses;
@@ -8,78 +8,64 @@ using AutoTests.Settings;
 
 namespace AutoTests.PageObjects
 {
+    /// <summary>
+    /// Properties of the the garage door
+    /// </summary>
+    public class GarageDoorProperties
+    {
+        /// <summary>
+        /// Enter the width of the garage door opening (mm)
+        /// </summary>
+        public string DoorsWidth { get; set; }
+        /// <summary>
+        /// Enter the height of the garage door opening (mm)
+        /// </summary>
+        public string DoorsHeight { get; set; }
+        /// <summary>
+        /// Select gate automation option?
+        /// </summary>
+        public bool GateAutomation { get; set; }
+        /// <summary>
+        /// Select gate installation work option?
+        /// </summary>
+        public bool GateInstallationWork { get; set; }
+
+    }
+
+    public class GarageDoorPriceProperties
+    {
+        /// <summary>
+        /// Enter the regular expression of the result message to verify it
+        /// </summary>
+        public string CalculationResultMessageRegex { get; set; }
+        
+        /// <summary>
+        /// Enter the properly calculated price to verify it. Leave empty string if no verifying is needed
+        /// </summary>
+        public string CalculatedPrice { get; set; }
+    }
+
+    /// <summary>
+    /// Home page HTML elements
+    /// </summary>
     public class HomePageObject : PageObjectBase
     {
-
         [FindsBy(How = How.Id, Using = "doors_width")]
-        private readonly IWebElement doorsWidth;
+        public IWebElement DoorsWidth_Input { get; set; }
 
         [FindsBy(How = How.Id, Using = "doors_height")]
-        private readonly IWebElement doorsHeight;
+        public IWebElement DoorsHeight_Input { get; set; }
 
         [FindsBy(How = How.Id, Using = "automatika")]
-        private readonly IWebElement gateAutomation;
+        public IWebElement GateAutomation_Checkbox { get; set; }
 
         [FindsBy(How = How.Id, Using = "darbai")]
-        private readonly IWebElement gateInstallationWork;
+        public IWebElement GateInstallationWork_Checkbox { get; set; }
 
         [FindsBy(How = How.Id, Using = "calc_submit")]
-        private readonly IWebElement calculationButton;
+        public IWebElement Calculation_Button { get; set; }
 
         [FindsBy(How = How.Id, Using = "calc_result")]
-        private readonly IWebElement calculationResultMessage;
-
-        /// <summary>
-        /// Calculate the price of a garage door
-        /// </summary>
-        /// <param name="doorsWidthValue">Enter the width of the garage door opening (mm)</param>
-        /// <param name="doorsHeightValue">Enter the height of the garage door opening (mm)</param>
-        /// <param name="clickOnGateAutomation">Select gate automation option?</param>
-        /// <param name="clickOnGateInstallationWork">Select gate installation work option?</param>
-        /// <param name="calculationResultMessageRegex">Enter the regular expression calculation result message to verify it</param>
-        /// <param name="calculatedPrice">Enter the properly calculated price to verify it. Leave empty string if no verifying is needed</param>
-        /// 
-        public void CalculateGarageDoorPrice(
-            string doorsWidthValue,
-            string doorsHeightValue,
-            bool clickOnGateAutomation,
-            bool clickOnGateInstallationWork,
-            string calculationResultMessageRegex,
-            string calculatedPrice
-        )
-        {
-            doorsWidth.SendKeys(doorsWidthValue);
-            doorsHeight.SendKeys(doorsHeightValue);
-            if(!gateAutomation.Selected && clickOnGateAutomation)
-            {
-                gateAutomation.Click();
-            }
-            if (!gateInstallationWork.Selected && clickOnGateInstallationWork)
-            {
-                gateInstallationWork.Click();
-            }
-            calculationButton.Click();
-            ObjectRepository.Driver.WaitUntilElementIsVisible(calculationResultMessage, 20);
-            StringAssert.IsMatch(calculationResultMessageRegex,calculationResultMessage.Text.Trim());
-            if(calculatedPrice.Length > 0)
-            {
-                StringAssert.Contains(calculatedPrice, calculationResultMessage.Text);
-            }
-        }
-
-        public void ClearCalculatorForm()
-        {
-            doorsWidth.Clear();
-            doorsHeight.Clear();
-            if (gateAutomation.Selected)
-            {
-                gateAutomation.Click();
-            }
-            if (gateInstallationWork.Selected)
-            {
-                gateInstallationWork.Click();
-            }
-        }
-
+        public IWebElement CalculationResult_Text { get; set; }
     }
 }
