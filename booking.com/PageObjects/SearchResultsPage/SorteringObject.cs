@@ -2,6 +2,8 @@
 using ATFramework.Helpers;
 using ATFramework.Libraries.WebDriver;
 using booking.com.WebElements.SearchResultsPage;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +25,20 @@ namespace booking.com.PageObjects.SearchResultsPage
 
         public void WaitUntilLoadingElementGoesAway()
         {
-            while(!GenericHelper.IsElementVisible(this.SearchResultsPage_WebElements.LoadingElement))
+            try
             {
+                this.GetWebDriver().GetCurrentDriver().WaitUntilElementIsVisible(this.SearchResultsPage_WebElements.LoadingElement);
+            }
+            catch
+            {
+                // skip
             }
 
-            Thread.Sleep(5000);
+            // Little hardcoded for now
+            while (GenericHelper.IsElementVisible(this.SearchResultsPage_WebElements.LoadingElement))
+            {
+            }
+            Thread.Sleep(500);
         }
 
 
