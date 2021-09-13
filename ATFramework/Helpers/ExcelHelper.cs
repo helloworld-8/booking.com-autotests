@@ -13,7 +13,6 @@ namespace ATFramework.Helpers
     {
         public static string GetDataFilePath(string path)
         {
-            //return Path.Combine(Environment.CurrentDirectory, path, fileName);
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, String.Format(@"Data\{0}", path));
         }
 
