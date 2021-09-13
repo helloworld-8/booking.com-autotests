@@ -31,9 +31,6 @@ namespace booking.com.Tests.SearchResultsPage
             this.SearchResultsPage_Sortering_PageObject.SortByHighestPrice();
             this.SearchResultsPage_Sortering_PageObject.WaitUntilLoadingElementGoesAway();
             
-            // For now can't make away loading element go away.
-            Thread.Sleep(5000);
-
             // Verify prices
             List<SearchResultModel> searchResults = this.SearchResultsPage_PageObject.GetSearchResults();
             List<int> prices = new List<int>();

@@ -71,7 +71,10 @@
       <Name>ATFramework</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="PageObjects\HotelPage\" />
+    <Folder Include="WebElements\HotelPage\" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DotNetSeleniumExtras.PageObjects">
       <Version>3.11.0</Version>

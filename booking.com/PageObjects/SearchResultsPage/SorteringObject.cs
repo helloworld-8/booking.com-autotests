@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace booking.com.PageObjects.SearchResultsPage
@@ -25,6 +26,8 @@ namespace booking.com.PageObjects.SearchResultsPage
             while(!GenericHelper.IsElementVisible(this.SearchResultsPage_WebElements.LoadingElement))
             {
             }
+
+            Thread.Sleep(5000);
         }
 
 

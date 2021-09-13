@@ -2,6 +2,7 @@
 using ATFramework.Helpers;
 using ATFramework.Libraries.WebDriver;
 using booking.com.WebElements.SearchResultsPage;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace booking.com.PageObjects.SearchResultsPage
         public string ChildrenNumber { get; set; }
         public string Nights { get; set; }
         public string Price { get; set; }
+        public string Url { get; set; }
     }
 
     public class SearchResultsPage_PageObject : ATFramework_PageObjectBase
@@ -48,6 +50,7 @@ namespace booking.com.PageObjects.SearchResultsPage
                     searchResultModel.AdultsNumber = roomsDetails.Length > 1 ? roomsDetails[1] : "";
                     searchResultModel.ChildrenNumber = roomsDetails.Length > 2 ? roomsDetails[2] : "";
                 }
+                searchResultModel.Url = this.SearchResultsPage_WebElements.GetLink(searchResult).GetAttribute("href");
                 SearchResults.Add(searchResultModel);
             }
             return SearchResults;

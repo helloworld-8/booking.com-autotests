@@ -29,6 +29,11 @@ namespace booking.com.WebElements.SearchResultsPage
             return searchResult.FindElement(By.CssSelector("div[class=\"sr_card_address_line\"]"));
         }
 
+        public IWebElement GetLink(IWebElement searchResult)
+        {
+            return searchResult.FindElement(By.CssSelector(".js-sr-hotel-link"));
+        }
+
         public IWebElement GetPrice(IWebElement searchResult)
         {
             return searchResult.FindElement(By.CssSelector("div.bui-price-display__value"));

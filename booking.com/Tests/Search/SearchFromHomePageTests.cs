@@ -105,6 +105,43 @@ namespace booking.com.Tests.Search
             SearchForm_PageObject.ClearSearchForm();
         }
 
+        [TestCase("Kaunas", "2021-09-22", "2021-09-30", "2", "0", "1")]
+
+        public void Should_Perform_A_Successful_Search_And_Verify_Hotel_Page(
+            string searchDestination,
+            string checkInDate,
+            string checkOutDate,
+            string adultsNumber,
+            string childrenNumber,
+            string roomsNumber,
+            params string[] childrenAge)
+        {
+            SearchForm_PageObject.PerformSearch(searchDestination, checkInDate, checkOutDate, adultsNumber, childrenNumber, roomsNumber, childrenAge);
+            List<SearchResultModel> searchResults = this.SearchResultsPage_PageObject.GetSearchResults();
+
+            if (searchResults.Count > 0)
+            {
+                this.GetWebDriver().NavigateToUrl(searchResults[0].Url);
+
+                // Verify search form with saved options
+                string currentCheckInDate = this.DatePicker_PageObject.GetCurrentCheckInDate();
+                string currentCheckOutDate = this.DatePicker_PageObject.GetCurrentCheckOutDate();
+                Assert.AreEqual(checkInDate, currentCheckInDate, "The check in date was not saved");
+                Assert.AreEqual(checkOutDate, currentCheckOutDate, "The check out date was not saved");
+                Assert.AreEqual(this.GuestsTotal_PageObject.GetCurrentAdultsNumber().ToString(), adultsNumber, "The adults number was not saved");
+                Assert.AreEqual(this.GuestsTotal_PageObject.GetCurrentChildrenNumber().ToString(), childrenNumber);
+                if (childrenAge.Length > 0)
+                {
+                    Assert.AreEqual(this.GuestsTotal_PageObject.GetCurrentChildrenAge(), childrenAge);
+                }
+                Assert.AreEqual(this.GuestsTotal_PageObject.GetCurrentRoomsNumber().ToString(), roomsNumber);
+            }
+            else
+            {
+                // should be error. Later will fix it.
+            }
+
+        }
 
     }
 }

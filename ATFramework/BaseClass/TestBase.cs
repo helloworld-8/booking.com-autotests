@@ -52,8 +52,6 @@ namespace ATFramework.BaseClass
         [OneTimeTearDown]
         protected void OneTimeTearDown()
         {
-           
-
             this.GetWebDriver().WebDriverQuit();
         }
     }
