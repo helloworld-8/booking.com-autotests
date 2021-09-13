@@ -49,6 +49,7 @@
     <Compile Include="BaseClass\TestBase.cs" />
     <Compile Include="Helpers\ExcelHelper.cs" />
     <Compile Include="Libraries\Cache\Cache.cs" />
+    <Compile Include="Libraries\MyScreenShot.cs" />
     <Compile Include="Libraries\WebDriver\WebDriver.cs" />
     <Compile Include="Config\Browsers.cs" />
     <Compile Include="Helpers\GenericHelper.cs" />

@@ -2,6 +2,10 @@
 using ATFramework.Config;
 using ATFramework.Libraries.WebDriver;
 using System;
+using OpenQA.Selenium;
+using System.Drawing.Imaging;
+using NUnit.Framework.Interfaces;
+using ATFramework.Libraries;
 
 namespace ATFramework.BaseClass
 {
@@ -36,9 +40,20 @@ namespace ATFramework.BaseClass
         {
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
+            {
+                MyScreenshot.TakeScreenshot(this.GetWebDriver().GetCurrentDriver());
+            }
+        }
+
         [OneTimeTearDown]
         protected void OneTimeTearDown()
         {
+           
+
             this.GetWebDriver().WebDriverQuit();
         }
     }
