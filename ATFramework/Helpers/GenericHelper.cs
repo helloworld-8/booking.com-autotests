@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
@@ -35,32 +37,37 @@ namespace ATFramework.Helpers
 
         public static IWebElement WaitUntilElementIsVisible(this IWebDriver driver, IWebElement element, int timeOutInSeconds = 10)
         {
-            try
-            {
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutInSeconds));
-                return wait.Until(ElementIsVisible(element)); //Wait finishes when return is a non-null value or 'true'
-            }
-            catch (NoSuchElementException ex)
-            {
-                //MethodLogger.OutputLog($"Element: {element} was not found on current page.");
-                //MethodLogger.OutputLog(ex);
-                return null;
-            }
-            catch (WebDriverTimeoutException)
-            {
-                //MethodLogger.OutputLog($"Timed out Looking for Clickable Element; {element}: Waited for {timeOutInSeconds} seconds.");
-                return null;
-            }
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutInSeconds));
+            return wait.Until(ElementIsVisible(element)); //Wait finishes when return is a non-null value or 'true'
         }
 
-        public static string GetCurrentMethodName()
+        public static bool IsElementVisible(IWebElement element)
         {
-            StackTrace stackTrace = new StackTrace();
-            StackFrame stackFrame = stackTrace.GetFrame(1);
-
-            return stackFrame.GetMethod().Name;
+            return element.Displayed && element.Enabled;
         }
 
+        public static bool HasClass(this IWebElement element, string className)
+        {
+            return element.GetAttribute("class").Split(' ').Contains(className);
+        }
+
+        public static bool WaitUntilUrlContains(this IWebDriver driver, string urlFragment, int timeOutInSeconds = 10)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutInSeconds));
+            return wait.Until(ExpectedConditions.UrlContains(urlFragment));
+        }
+
+        public static Boolean ascendingCheck(List<int> data)
+        {
+            for (int i = 0; i < data.Count - 1; i++)
+            {
+                if (data[i] > data[i + 1])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
     }
 }

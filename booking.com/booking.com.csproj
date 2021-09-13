@@ -4,16 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2A08FEAF-11AB-4255-9E7C-6E2C550B3C37}</ProjectGuid>
+    <ProjectGuid>{C2EC56DE-C770-484F-9FDB-E14B39913FFF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>vartutechnika.lt</RootNamespace>
-    <AssemblyName>vartutechnika.lt</AssemblyName>
+    <RootNamespace>booking.com</RootNamespace>
+    <AssemblyName>booking.com</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,28 +32,38 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseClass\TestBase.cs" />
-    <Compile Include="PageObjects\Index\GarageDoorPriceCalculation.cs" />
+    <Compile Include="DataModels\DatePickerDataModel.cs" />
+    <Compile Include="PageObjects\SearchFormComponents\Helpers.cs" />
+    <Compile Include="PageObjects\SearchFormComponents\SearchFormObject.cs" />
+    <Compile Include="PageObjects\SearchFormComponents\DatePickerObject.cs" />
+    <Compile Include="PageObjects\SearchFormComponents\GuestsTotalObject.cs" />
+    <Compile Include="PageObjects\SearchFormComponents\SearchDestinationObject.cs" />
+    <Compile Include="PageObjects\SearchResultsPage\SearchResultsPageObject.cs" />
+    <Compile Include="PageObjects\SearchResultsPage\SorteringObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\GarageDoorPriceCalculation\GarageDoorPriceCalculation.cs" />
+    <Compile Include="Routes.cs" />
+    <Compile Include="Tests\HomePage\SearchForm\DatePickerTests.cs" />
+    <Compile Include="Tests\HomePage\SearchForm\GuestsTotalTests.cs" />
+    <Compile Include="Tests\HomePage\SearchForm\SearchDestinationTests.cs" />
+    <Compile Include="Tests\SearchResultsPage\SearchForm\DatePickerTests.cs" />
+    <Compile Include="Tests\SearchResultsPage\SearchForm\GuestsTotalTests.cs" />
+    <Compile Include="Tests\SearchResultsPage\SearchForm\SearchDestinationTests.cs" />
+    <Compile Include="Tests\SearchResultsPage\SorteringTests.cs" />
+    <Compile Include="Tests\Search\SearchFromHomePageTests.cs" />
+    <Compile Include="WebElements\SearchFormComponents\DatePickerTotalWebElements.cs" />
+    <Compile Include="WebElements\SearchFormComponents\GuestsTotalWebElements.cs" />
+    <Compile Include="WebElements\SearchResultsPage\SearchResultsPageWebElements.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ATFramework\ATFramework.csproj">
@@ -63,10 +71,7 @@
       <Name>ATFramework</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="DataModels\GarageDoorPriceCalculation.cs" />
-    <None Include="Data\GarageDoorPriceCalculation\Should_Calculate_Garage_Door_Price_Succesfully.xlsx" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <PackageReference Include="DotNetSeleniumExtras.PageObjects">
       <Version>3.11.0</Version>
@@ -89,10 +94,14 @@
     <PackageReference Include="Selenium.WebDriver.ChromeDriver">
       <Version>93.0.4577.1500</Version>
     </PackageReference>
-    <PackageReference Include="System.Configuration.ConfigurationManager">
-      <Version>5.0.0</Version>
-    </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Data\SearchForm\DatePicker\This_Date_Should_Not_Be_Visible_In_Date_Picker.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\SearchForm\DatePicker\Should_Select_CheckInOut_Dates_Succesfully.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

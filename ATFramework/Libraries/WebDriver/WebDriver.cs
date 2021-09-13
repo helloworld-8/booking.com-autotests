@@ -76,6 +76,10 @@ namespace ATFramework.Libraries.WebDriver
         {
             this.GetCurrentDriver().Navigate().GoToUrl(url);
         }
+        public string GetCurrentUrl()
+        {
+            return this.GetCurrentDriver().Url;
+        }
 
         public void WebDriverQuit()
         {

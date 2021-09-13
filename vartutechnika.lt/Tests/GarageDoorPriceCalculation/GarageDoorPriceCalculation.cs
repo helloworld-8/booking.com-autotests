@@ -13,9 +13,9 @@ namespace vartutechnika.lt.Tests.GarageDoorPriceCalculation
         {
         }
 
-        private GarageDoorPriceCalculation_PageController GetPageController()
+        private GarageDoorPriceCalculation_PageObject GetPageController()
         {
-            return new GarageDoorPriceCalculation_PageController(this.GetWebDriver());
+            return new GarageDoorPriceCalculation_PageObject(this.GetWebDriver());
         }
 
         [TestCaseSource(typeof(GarageDoorPriceCalculation_DataModel), "Should_Calculate_Garage_Door_Price_Succesfully")]

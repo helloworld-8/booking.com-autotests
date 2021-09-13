@@ -4,11 +4,11 @@ using SeleniumExtras.PageObjects;
 
 namespace ATFramework.BaseClass
 {
-    public class ATFramework_PageControllerBase
+    public class ATFramework_PageObjectBase
     {
         private WebDriver webDriver;
 
-        protected ATFramework_PageControllerBase(WebDriver webDriver)
+        protected ATFramework_PageObjectBase(WebDriver webDriver)
         {
             this.webDriver = webDriver;
             PageFactory.InitElements(webDriver.GetCurrentDriver(), this);

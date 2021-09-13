@@ -12,10 +12,10 @@ namespace vartutechnika.lt.Tests.PageObjects.HomePage
     /// <summary>
     /// Web elements of the garage door price calculation section in the home page
     /// </summary>
-    public class GarageDoorPriceCalculation_PageController : ATFramework_PageControllerBase
+    public class GarageDoorPriceCalculation_PageObject : ATFramework_PageObjectBase
     {
 
-        public GarageDoorPriceCalculation_PageController(WebDriver webDriver) : base(webDriver)
+        public GarageDoorPriceCalculation_PageObject(WebDriver webDriver) : base(webDriver)
         {
 
         }

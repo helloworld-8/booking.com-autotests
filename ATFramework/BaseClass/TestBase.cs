@@ -34,7 +34,6 @@ namespace ATFramework.BaseClass
         [SetUp]
         protected void SetUp()
         {
-            //TestRunner = new TestRunner(TestContext);
         }
 
         [OneTimeTearDown]
